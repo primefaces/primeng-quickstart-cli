@@ -1,0 +1,42 @@
+<div class="data-container">
+  <div class="datatable">
+    <p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true"
+      rows="10" [responsive]="true">
+      <header>CRUD for Cars</header>
+      <p-column field="vin" header="Vin" [sortable]="true"></p-column>
+      <p-column field="year" header="Year" [sortable]="true"></p-column>
+      <p-column field="brand" header="Brand" [sortable]="true"></p-column>
+      <p-column field="color" header="Color" [sortable]="true"></p-column>
+      <footer>
+        <div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div>
+      </footer>
+    </p-dataTable>
+  </div>
+</div>
+
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="vin">Vin</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="brand">Year</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="car.year" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="brand">Brand</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="car.brand" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="color">Color</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="car.color" /></div>
+    </div>
+  </div>
+  <footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </footer>
+</p-dialog>
