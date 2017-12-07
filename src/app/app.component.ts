@@ -1,27 +1,27 @@
-import { Component } from '@angular/core';
-import { Car } from 'app/domain/car';
-import { CarService} from 'app/services/carservice';
+import {Component, OnInit} from '@angular/core';
+import { Car } from './domain/car';
+import { CarService} from './services/carservice';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [CarService]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    providers: [CarService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
     
     displayDialog: boolean;
-
+    
     car: Car = new PrimeCar();
     
     selectedCar: Car;
     
     newCar: boolean;
-
+    
     cars: Car[];
-
+    
     constructor(private carService: CarService) { }
-
+    
     ngOnInit() {
         this.carService.getCarsSmall().then(cars => this.cars = cars);
     }
@@ -33,23 +33,23 @@ export class AppComponent {
     }
     
     save() {
-        let cars = [...this.cars];
-        if(this.newCar)
+        const cars = [...this.cars];
+        if (this.newCar) {
             cars.push(this.car);
-        else
+        } else {
             cars[this.findSelectedCarIndex()] = this.car;
-        
+        }
         this.cars = cars;
         this.car = null;
         this.displayDialog = false;
     }
     
     delete() {
-        let index = this.findSelectedCarIndex();
-        this.cars = this.cars.filter((val,i) => i!=index);
+        const index = this.findSelectedCarIndex();
+        this.cars = this.cars.filter((val, i) => i != index);
         this.car = null;
         this.displayDialog = false;
-    }    
+    }
     
     onRowSelect(event) {
         this.newCar = false;
@@ -58,8 +58,8 @@ export class AppComponent {
     }
     
     cloneCar(c: Car): Car {
-        let car = new PrimeCar();
-        for(let prop in c) {
+        const car = new PrimeCar();
+        for (const prop in c) {
             car[prop] = c[prop];
         }
         return car;

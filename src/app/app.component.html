@@ -1,13 +1,17 @@
-<p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+<p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
     <p-header>CRUD for Cars</p-header>
     <p-column field="vin" header="Vin" [sortable]="true"></p-column>
     <p-column field="year" header="Year" [sortable]="true"></p-column>
     <p-column field="brand" header="Brand" [sortable]="true"></p-column>
     <p-column field="color" header="Color" [sortable]="true"></p-column>
-    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></p-footer>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button>
+        </div>
+    </p-footer>
 </p-dataTable>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [closable]="true">
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
         <div class="ui-grid-row">
             <div class="ui-grid-col-4"><label for="vin">Vin</label></div>

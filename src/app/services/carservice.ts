@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient} from '@angular/common/http';
 import { Car } from '../domain/car';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CarService {
     
-    constructor(private http: Http) {}
-
+    constructor(private http: HttpClient) {}
+    
     getCarsSmall() {
-        return this.http.get('assets/data/cars-small.json')
-                    .toPromise()
-                    .then(res => <Car[]> res.json().data)
-                    .then(data => { return data; });
+        return this.http.get<any>('assets/data/cars-small.json')
+            .toPromise()
+            .then(res => <Car[]> res.data)
+            .then(data => data);
     }
 }
