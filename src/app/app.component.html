@@ -1,34 +1,39 @@
-<p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
-    <p-header>CRUD for Cars</p-header>
-    <p-column field="vin" header="Vin" [sortable]="true"></p-column>
-    <p-column field="year" header="Year" [sortable]="true"></p-column>
-    <p-column field="brand" header="Brand" [sortable]="true"></p-column>
-    <p-column field="color" header="Color" [sortable]="true"></p-column>
-    <p-footer>
-        <div class="ui-helper-clearfix" style="width:100%">
-            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
-    </p-footer>
-</p-dataTable>
+<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [closable]="true">
-    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="vin">Vin</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="fa-plus" (click)="showDialogToAdd()" label="Add"></button>
         </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="year">Year</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="year" [(ngModel)]="car.year" /></div>
-        </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="brand">Brand</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="car.brand" /></div>
-        </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="color">Color</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="car.color" /></div>
-        </div>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [closable]="true" [width]="300">
+    <div class="ui-g ui-fluid" *ngIf="car">
+        <div class="ui-g-4"><label for="vin">Vin</label></div>
+        <div class="ui-g-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>
+        
+        <div class="ui-g-4"><label for="year">Year</label></div>
+        <div class="ui-g-8"><input pInputText id="year" [(ngModel)]="car.year" /></div>
+        
+        <div class="ui-g-4"><label for="brand">Brand</label></div>
+        <div class="ui-g-8"><input pInputText id="brand" [(ngModel)]="car.brand" /></div>
+        
+        <div class="ui-g-4"><label for="color">Color</label></div>
+        <div class="ui-g-8"><input pInputText id="color" [(ngModel)]="car.color" /></div>
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">

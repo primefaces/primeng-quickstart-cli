@@ -3,7 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule }  from 'primeng/primeng';
+import { InputTextModule }  from 'primeng/inputtext';
+import { ButtonModule }  from 'primeng/button';
+import { TableModule }  from 'primeng/table';
+import { DialogModule }  from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 
@@ -15,7 +18,7 @@ import { AppComponent } from './app.component';
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
-        DataTableModule,
+        TableModule,
         HttpClientModule,
         InputTextModule,
         DialogModule,
