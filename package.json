@@ -30,13 +30,14 @@
     "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26",
     "primeicons": "1.0.0",
-    "primeng": "7.1.0"
+    "primeng": "7.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.11.0",
     "@angular/cli": "~7.1.0",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",
+    "@angular/cdk": "~7.1.0",
     "@types/jasmine": "~3.3.1",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.12",
@@ -51,6 +52,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.1.6"
+    "typescript": "~3.1.6"
   }
 }
