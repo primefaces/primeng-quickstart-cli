@@ -6,6 +6,8 @@ export class PrimeCar implements Car {
     constructor(public vin?, public year?, public brand?, public color?) {}
 }
 
+type Column = { field: string, header: string };
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -24,25 +26,34 @@ export class AppComponent implements OnInit {
 
     cars: Car[];
 
-    cols: any[];
+    cols: Column[];
 
     constructor(private carService: CarService) { }
 
     ngOnInit() {
-        this.carService.getCarsSmall().then(cars => this.cars = cars);
-
-        this.cols = [
-            { field: 'vin', header: 'Vin' },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color' }
-        ];
+        this.carService.getCarsSmall()
+            .then(cars => {
+                this.cols = this.discoverColumns(cars);
+                this.cars = cars;
+            });
     }
 
     showDialogToAdd() {
         this.newCar = true;
         this.car = new PrimeCar();
         this.displayDialog = true;
+    }
+
+    private discoverColumns(data: any[]) {
+        // asumption: data is a homogeneous array
+        const first = data ? data[0] : null;
+
+        return Object.keys(first).map<Column>(p => ({ field: p, header: this.createHeader(p) }))
+    }
+
+    private createHeader(camelCased: string) {
+        if (!camelCased) return null;
+        return camelCased[0].toUpperCase() + camelCased.substring(1);
     }
 
     save() {
