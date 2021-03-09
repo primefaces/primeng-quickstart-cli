@@ -1,76 +1,121 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from './domain/car';
-import { CarService } from './services/carservice';
-
-export class PrimeCar implements Car {
-    constructor(public vin?, public year?, public brand?, public color?) {}
-}
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Product } from './domain/product';
+import { ProductService } from './services/productservice';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [CarService]
+    providers: [ConfirmationService,MessageService,ProductService]
 })
 export class AppComponent implements OnInit {
 
-    displayDialog: boolean;
+    productDialog: boolean;
 
-    car: Car = new PrimeCar();
+    products: Product[];
 
-    selectedCar: Car;
+    product: Product;
 
-    newCar: boolean;
+    selectedProducts: Product[];
 
-    cars: Car[];
+    submitted: boolean;
 
-    cols: any[];
+    statuses: any[];
 
-    constructor(private carService: CarService) { }
+    constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
     ngOnInit() {
-        this.carService.getCarsSmall().then(cars => this.cars = cars);
+        this.productService.getProducts().then(data => this.products = data);
 
-        this.cols = [
-            { field: 'vin', header: 'Vin' },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color' }
+        this.statuses = [
+            {label: 'INSTOCK', value: 'instock'},
+            {label: 'LOWSTOCK', value: 'lowstock'},
+            {label: 'OUTOFSTOCK', value: 'outofstock'}
         ];
     }
 
-    showDialogToAdd() {
-        this.newCar = true;
-        this.car = new PrimeCar();
-        this.displayDialog = true;
+    openNew() {
+        this.product = {};
+        this.submitted = false;
+        this.productDialog = true;
     }
 
-    save() {
-        const cars = [...this.cars];
-        if (this.newCar) {
-            cars.push(this.car);
-        } else {
-            cars[this.findSelectedCarIndex()] = this.car;
+    deleteSelectedProducts() {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete the selected products?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+                this.selectedProducts = null;
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
+            }
+        });
+    }
+
+    editProduct(product: Product) {
+        this.product = {...product};
+        this.productDialog = true;
+    }
+
+    deleteProduct(product: Product) {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete ' + product.name + '?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.products = this.products.filter(val => val.id !== product.id);
+                this.product = {};
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+            }
+        });
+    }
+
+    hideDialog() {
+        this.productDialog = false;
+        this.submitted = false;
+    }
+    
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.product.name.trim()) {
+            if (this.product.id) {
+                this.products[this.findIndexById(this.product.id)] = this.product;                
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+            }
+            else {
+                this.product.id = this.createId();
+                this.product.image = 'product-placeholder.svg';
+                this.products.push(this.product);
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
+            }
+
+            this.products = [...this.products];
+            this.productDialog = false;
+            this.product = {};
         }
-        this.cars = cars;
-        this.car = null;
-        this.displayDialog = false;
     }
 
-    delete() {
-        const index = this.findSelectedCarIndex();
-        this.cars = this.cars.filter((val, i) => i !== index);
-        this.car = null;
-        this.displayDialog = false;
+    findIndexById(id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
     }
 
-    onRowSelect(event) {
-        this.newCar = false;
-        this.car = {...event.data};
-        this.displayDialog = true;
-    }
-
-    findSelectedCarIndex(): number {
-        return this.cars.indexOf(this.selectedCar);
+    createId(): string {
+        let id = '';
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for ( var i = 0; i < 5; i++ ) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
     }
 }
