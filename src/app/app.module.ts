@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -35,6 +36,7 @@ import { AppComponent } from './app.component';
         InputNumberModule,
         InputTextareaModule,
         RadioButtonModule,
+        DropdownModule,
         ButtonModule
     ],
     providers: [ConfirmationService],
