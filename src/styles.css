@@ -1,1 +1,6 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: var(--font-family);
+}
