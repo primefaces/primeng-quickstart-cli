@@ -1,0 +1,7 @@
+<div class="card flex justify-content-start">
+    <button #btn type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>
+    <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
+</div>
+<div id="conteudo">
+    <router-outlet></router-outlet>
+</div>
