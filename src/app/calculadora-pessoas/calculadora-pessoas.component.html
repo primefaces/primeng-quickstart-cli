@@ -1,0 +1,111 @@
+<p-divider></p-divider>
+<div class="grid vertical-align-middle align-items-center text-center">
+    <div class="col-12 align-items-center">
+        <span class="text-xl">Total de Pessoas: {{totalPessoas()}}</span>
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid vertical-align-middle align-items-center text-center">
+    <div class="col-3 align-items-start">
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <span class="pi pi-user" pBadge [value]=criancas.toString()> Crianças </span>
+            </div>
+        </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <p-button label="limpar" styleClass="p-button-rounded p-button-secondary"   (click)="zerarCriancas()"></p-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-9 align-items-start p-2">
+       <div class="grid vertical-align-middle align-items-center">
+           <div class="col-12 align-items-center p-2">
+               <p-button label="+1" styleClass="p-button-rounded" class="p-2" (click)="adicionarCriancas(1)"></p-button>
+               <p-button label="+5" styleClass="p-button-rounded" class="p-2" (click)="adicionarCriancas(5)"></p-button>
+               <p-button label="+10" styleClass="p-button-rounded" class="p-2" (click)="adicionarCriancas(10)"></p-button>
+           </div>
+       </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center p-2">
+                <p-button label="-1" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarCriancas(-1)"></p-button>
+                <p-button label="-5" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarCriancas(-5)"></p-button>
+                <p-button label="-10" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarCriancas(-10)"></p-button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid vertical-align-middle align-items-center text-center">
+    <div class="col-3 align-items-start">
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <span class="pi pi-user" pBadge [value]=membros.toString()> Membros </span>
+            </div>
+        </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <p-button label="limpar" styleClass="p-button-rounded p-button-secondary"  (click)="zerarMembros()"></p-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-9 align-items-start p-2">
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center p-2">
+                <p-button label="+1" styleClass="p-button-rounded" class="p-2" (click)="adicionarMembros(1)"></p-button>
+                <p-button label="+5" styleClass="p-button-rounded" class="p-2" (click)="adicionarMembros(5)"></p-button>
+                <p-button label="+10" styleClass="p-button-rounded" class="p-2" (click)="adicionarMembros(10)"></p-button>
+            </div>
+        </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center p-2">
+                <p-button label="-1" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarMembros(-1)"></p-button>
+                <p-button label="-5" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarMembros(-5)"></p-button>
+                <p-button label="-10" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarMembros(-10)"></p-button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid vertical-align-middle align-items-center text-center">
+    <div class="col-3 align-items-start">
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <span class="pi pi-user" pBadge [value]=visitantes.toString()> Visitantes </span>
+            </div>
+        </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center">
+                <p-button label="limpar" styleClass="p-button-rounded p-button-secondary"  (click)="zerarVisitantes()"></p-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-9 align-items-start p-2">
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center p-2">
+                <p-button label="+1" styleClass="p-button-rounded" class="p-2" (click)="adicionarVisitantes(1)"></p-button>
+                <p-button label="+5" styleClass="p-button-rounded" class="p-2" (click)="adicionarVisitantes(5)"></p-button>
+                <p-button label="+10" styleClass="p-button-rounded" class="p-2" (click)="adicionarVisitantes(10)"></p-button>
+            </div>
+        </div>
+        <div class="grid vertical-align-middle align-items-center">
+            <div class="col-12 align-items-center p-2">
+                <p-button label="-1" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarVisitantes(-1)"></p-button>
+                <p-button label="-5" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarVisitantes(-5)"></p-button>
+                <p-button label="-10" styleClass="p-button-rounded p-button-danger" class="p-2" (click)="adicionarVisitantes(-10)"></p-button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid vertical-align-middle align-items-center text-center">
+    <div class="col-12 align-items-center">
+        <a target="_blank" href="https://api.whatsapp.com/send?text=*Contagem%20de%20pessoas%20({{dataAtual()}})*%0A*Crian%C3%A7as*%20=%20{{criancas}}%0A*Membros*%20=%20{{membros}}%0A*Visitantes*%20=%20{{visitantes}}">
+            <p-button icon="pi pi-whatsapp" label="Enviar pelo WhatsApp" styleClass="p-button-rounded p-button-success" class="p-2"></p-button>
+        </a>
+    </div>
+</div>
+
