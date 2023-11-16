@@ -17,10 +17,16 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 
 import { AppComponent } from './app.component';
-
+import { MenuComponent } from './menu/menu.component';
+import {TieredMenuModule} from "primeng/tieredmenu";
+import { CalculadoraPessoasComponent } from './calculadora-pessoas/calculadora-pessoas.component';
+import {DividerModule} from "primeng/divider";
+import {BadgeModule} from "primeng/badge";
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        MenuComponent,
+        CalculadoraPessoasComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +43,10 @@ import { AppComponent } from './app.component';
         InputTextareaModule,
         RadioButtonModule,
         DropdownModule,
-        ButtonModule
+        ButtonModule,
+        TieredMenuModule,
+        DividerModule,
+        BadgeModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
