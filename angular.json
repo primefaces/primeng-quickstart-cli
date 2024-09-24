@@ -66,10 +66,10 @@
             "builder": "@angular-devkit/build-angular:dev-server",
             "configurations": {
               "production": {
-                "browserTarget": "primeng-quickstart-cli:build:production"
+                "buildTarget": "primeng-quickstart-cli:build:production"
               },
               "development": {
-                "browserTarget": "primeng-quickstart-cli:build:development"
+                "buildTarget": "primeng-quickstart-cli:build:development"
               }
             },
             "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
           "extract-i18n": {
             "builder": "@angular-devkit/build-angular:extract-i18n",
             "options": {
-              "browserTarget": "primeng-quickstart-cli:build"
+              "buildTarget": "primeng-quickstart-cli:build"
             }
           },
           "test": {
