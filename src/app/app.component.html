@@ -50,15 +50,15 @@
   <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
       <h5 class="m-0">Manage Products</h5>
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
+      <p-iconfield iconPosition="left">
+        <p-inputicon styleClass="pi pi-search" />
         <input
           pInputText
           type="text"
           (input)="dt.filterGlobal($event.target.value, 'contains')"
           placeholder="Search..."
         />
-      </span>
+      </p-iconfield>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -108,7 +108,7 @@
           pButton
           pRipple
           icon="pi pi-trash"
-          class="p-button-rounded p-button-warning"
+          class="p-button-rounded p-button-warn"
           (click)="deleteProduct(product)"
         ></button>
       </td>
@@ -158,7 +158,7 @@
 
       <div class="flex flex-column gap-2">
         <label for="inventoryStatus">Inventory Status</label>
-        <p-dropdown
+        <p-select
           [(ngModel)]="product.inventoryStatus"
           inputId="inventoryStatus"
           [options]="statuses"
@@ -169,46 +169,46 @@
               option.label
             }}</span>
           </ng-template>
-        </p-dropdown>
+        </p-select>
       </div>
 
       <div class="flex flex-column gap-2">
         <label>Category</label>
         <div class="grid">
           <div class="col-6">
-            <p-radioButton
+            <p-radiobutton
               id="category1"
               name="category"
               value="Accessories"
               [(ngModel)]="product.category"
-            ></p-radioButton>
+            ></p-radiobutton>
             <label for="category1" class="ml-2">Accessories</label>
           </div>
           <div class="col-6">
-            <p-radioButton
+            <p-radiobutton
               id="category2"
               name="category"
               value="Clothing"
               [(ngModel)]="product.category"
-            ></p-radioButton>
+            ></p-radiobutton>
             <label for="category2" class="ml-2">Clothing</label>
           </div>
           <div class="col-6">
-            <p-radioButton
+            <p-radiobutton
               id="category3"
               name="category"
               value="Electronics"
               [(ngModel)]="product.category"
-            ></p-radioButton>
+            ></p-radiobutton>
             <label for="category3" class="ml-2">Electronics</label>
           </div>
           <div class="col-6">
-            <p-radioButton
+            <p-radiobutton
               id="category4"
               name="category"
               value="Fitness"
               [(ngModel)]="product.category"
-            ></p-radioButton>
+            ></p-radiobutton>
             <label for="category4" class="ml-2">Fitness</label>
           </div>
         </div>
@@ -216,23 +216,21 @@
 
       <div class="grid">
         <div class="col">
-          <label for="price">Price</label>
-          <p-inputNumber
+          <label for="price" class="block mb-2">Price</label>
+          <p-inputnumber
             id="price"
             [(ngModel)]="product.price"
             mode="currency"
             currency="USD"
             locale="en-US"
-            class="mt-2"
-          ></p-inputNumber>
+          ></p-inputnumber>
         </div>
         <div class="col">
-          <label for="quantity">Quantity</label>
-          <p-inputNumber
+          <label for="quantity" class="block mb-2">Quantity</label>
+          <p-inputnumber
             id="quantity"
             [(ngModel)]="product.quantity"
-            class="mt-2"
-          ></p-inputNumber>
+          ></p-inputnumber>
         </div>
       </div>
     </div>
@@ -258,4 +256,4 @@
   </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-confirmdialog [style]="{ width: '450px' }" />
