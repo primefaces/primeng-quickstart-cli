@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     saveProduct() {
         this.submitted = true;
 
-        if (this.product.name.trim()) {
+        if (this.product.name?.trim()) {
             if (this.product.id) {
                 this.products[this.findIndexById(this.product.id)] = this.product;                
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
