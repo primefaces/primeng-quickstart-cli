@@ -18,8 +18,8 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@primeng/themes": "^18.0.0-beta.5",
-    "primeng": "^18.0.0-beta.5",
+    "@primeng/themes": "^18.0.0-rc.1",
+    "primeng": "^18.0.0-rc.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
